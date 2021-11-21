@@ -10,7 +10,11 @@ class Game extends React.Component {
         type: Phaser.AUTO,
         scene: {
           init: function() {
-            this.cameras.main.setBackgroundColor('#24252A')
+            this.cameras.main.setBackgroundColor('#fff');
+            this.load.setCORS('anonymous');
+          },
+          preload: function(){
+            this.load.image('forg', 'https://64.media.tumblr.com/tumblr_l6ncfsPLYQ1qzj5ggo1_1280.jpg');
           },
           create: function() {
             this.helloWorld = this.add.text(
@@ -18,13 +22,23 @@ class Game extends React.Component {
               this.cameras.main.centerY, 
               "OOOOOOH FUC K ITS CODE WEEKEEND!!!!!!", { 
                 font: "40px Arial", 
-                fill: "#ffffff" 
+                fill: "#000" 
               }
             );
             this.helloWorld.setOrigin(0.5);
+            
+            this.forg = this.add.sprite(
+              this.cameras.main.centerX, 
+              this.cameras.main.centerY, 
+              'forg'
+            );
+            this.forg.setScale(0.1);
+            this.forg.setOrigin(0.5);
+
           },
           update: function() {
             this.helloWorld.angle += 1;
+            this.forg.angle -= 1;
           }
         }
       }
